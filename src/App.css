@@ -1,0 +1,131 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 743px;
+  height: 91px;
+  background-color: #3579F5;
+  border-radius: 10px;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #FFFFFF80;
+  border-radius: 50%;
+  margin-left: 22px;
+  color: #ffffff;
+  position: relative;
+}
+
+.progress-wraper {
+  position: absolute;
+  top: -1px;
+  left: -2px;
+}
+
+body {
+  height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+.circular-progress {
+  --size: 242px;
+  --half-size: calc(var(--size) / 2);
+  --stroke-width: 8px;
+  --radius: calc((var(--size) - var(--stroke-width)) / 2);
+  --circumference: calc(var(--radius) * pi * 2);
+  --dash: calc((var(--progress) * var(--circumference)) / 100);
+  animation: progress-animation 5s linear 0s 1 forwards;
+}
+
+.circular-progress circle {
+  cx: var(--half-size);
+  cy: var(--half-size);
+  r: var(--radius);
+  stroke-width: var(--stroke-width);
+  fill: none;
+  stroke-linecap: round;
+}
+
+.circular-progress circle.bg {
+  stroke: transparent;
+}
+
+.circular-progress circle.fg {
+  transform: rotate(-90deg);
+  transform-origin: var(--half-size) var(--half-size);
+  stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+  transition: stroke-dasharray 0.3s linear 0s;
+  stroke: #ffffff;
+}
+
+@property --progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes progress-animation {
+  from {
+    --progress: 0;
+  }
+  to {
+    --progress: var(--step);
+  }
+}
+
+.action-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  margin: auto 68px auto 16px;
+}
+
+.action-text-checklist {
+  width: 76px;
+  height: 18px;
+  background-color: #2364DB;
+  border-radius: 40px;
+  color: #ffffff;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-text-count {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.action-text-next {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.action-button {
+  width: 170px;
+  height: 40px;
+  background-color: #ffffff;
+  color: #4777ED;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  margin-right: 18px;
+}
